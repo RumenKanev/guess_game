@@ -7,12 +7,15 @@ import static org.mockito.Mockito.*;
 
 public class GameTest {
     @Test public void testGetsWordToGuess() {
-        WordChoser mockedChoser = mock(WordChoser.class);
-        Game game = new Game(mockedChoser);
+        WordChoser mockedChooser = mock(WordChoser.class);
+        when(mockedChooser.getRandomWordFromDictionary()).thenReturn("MAKERS");
+        Game game = new Game(mockedChooser);
         assertNotNull(game.getWordToGuess());
+
     }
-    @Test public void testGetInitialRemainingAttempts() {   WordChoser mockedChoser = mock(WordChoser.class);
-        Game game = new Game(mockedChoser);
+    @Test public void testGetInitialRemainingAttempts() {   
+        WordChoser mockedChooser = mock(WordChoser.class);
+        Game game = new Game(mockedChooser);
         assertEquals( game.getRemainingAttempts(), 10);
     }
 
@@ -24,10 +27,10 @@ public class GameTest {
 
     @Test
     public void testGetsWordToGuessWithRandomWord() {
-        WordChoser mockedChoser = mock(WordChoser.class);
-        when(mockedChoser.getRandomWordFromDictionary()).thenReturn("DEVELOPER");
+        WordChoser mockedChooser = mock(WordChoser.class);
+        when(mockedChooser.getRandomWordFromDictionary()).thenReturn("DEVELOPER");
 
-        Game game = new Game(mockedChoser);
+        Game game = new Game(mockedChooser);
 
         assertEquals(game.getWordToGuess(), "D________");
     }

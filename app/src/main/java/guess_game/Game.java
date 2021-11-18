@@ -1,19 +1,12 @@
 package guess_game;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
-
 public class Game {
-
     int counter = 10;
-
     String words;
-    public Game(WordChoser choser){
-       this.words = choser.getRandomWordFromDictionary();
 
+    public Game(WordChoser chooser){
+       this.words = chooser.getRandomWordFromDictionary();
     }
-
 
     public String getWordToGuess() {
         StringBuilder builder = new StringBuilder(words.length());
@@ -27,11 +20,8 @@ public class Game {
             }
         return builder.toString();
     }
-
     public int getRemainingAttempts(){
         return counter;
     }
-
-
 
 }
