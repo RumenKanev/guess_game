@@ -1,7 +1,5 @@
 package guess_game;
-
 import org.junit.Test;
-
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
@@ -29,10 +27,21 @@ public class GameTest {
     public void testGetsWordToGuessWithRandomWord() {
         WordChoser mockedChooser = mock(WordChoser.class);
         when(mockedChooser.getRandomWordFromDictionary()).thenReturn("DEVELOPER");
-
         Game game = new Game(mockedChooser);
-
         assertEquals(game.getWordToGuess(), "D________");
+    }
+    @Test public void testGuessLetterRightAndDisplayGuessedLetter() {
+        WordChoser mockedChooser = mock(WordChoser.class);
+        when(mockedChooser.getRandomWordFromDictionary()).thenReturn("MAKERS");
+        Game game = new Game(mockedChooser);
+        assertEquals(game.guessLetter('K'), true);
+    }
+
+    @Test public void testGuessLetterWrong() {
+        WordChoser mockedChooser = mock(WordChoser.class);
+        when(mockedChooser.getRandomWordFromDictionary()).thenReturn("MAKERS");
+        Game game = new Game(mockedChooser);
+        assertEquals(game.guessLetter('O'), false);
     }
 }
 
